@@ -1,0 +1,192 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/dataTables.jqueryui.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/jquery-ui.css' %}">
+        <link rel="stylesheet" href="{% static "kpi/css/bootstrap-multiselect.css" %}" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/tables.css' %}">
+        <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static "kpi/js/bootstrap-multiselect.js" %}"></script>
+        <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/jquery.dataTables.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.jqueryui.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/jszip.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.buttons.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/buttons.html5.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.fixedColumns.min.js' %} "></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/tables.js' %}"></script>
+
+	</head>
+	<body>
+    <div class="divBG ">
+        <img src="{% static 'kpi/img/loading.gif'%}" alt="">
+    </div>
+    <form id="kpiquery" class="form-inline" method="get" action="/">
+        {% csrf_token %}
+        <label>地市：</label>
+        <select class="form-control" name="city">
+            <option value="xa">西安</option>
+            <option value="wn">渭南</option>
+            <option value="ak">安康</option>
+            <option value="xy">咸阳</option>
+            <option value="bj">宝鸡</option>
+            <option value="ya">延安</option>
+            <option value="yl">榆林</option>
+        </select>
+
+        <label>
+            <input type="radio" name="kpitime" id="inlineRadio1" value="busy" checked>忙时
+        </label>
+
+        <label>
+            <input type="radio" name="kpitime" id="inlineRadio2" value="daily">全天
+        </label>
+
+        <select id="poortype" multiple="multiple" name="poortype">
+            <option value="1" selected="selected">无线接通率低</option>
+            <option value="2" selected="selected">LTE业务掉线率高</option>
+            <option value="3" selected="selected">同频切换成功率低</option>
+            <option value="4" selected="selected">CQI采样点差小区</option>
+            <option value="5" selected="selected">干扰噪声差小区</option>
+            <option value="6" selected="selected">感知速率<5Mbps（5M小于1Mbps）</option>
+            <option value="7" selected="selected">X2切换占比为0</option>
+            <option value="8" selected="selected">异频切换成功率低</option>
+            <option value="9" selected="selected">RRC拥塞次数高</option>
+            <option value="10" selected="selected">ERAB拥塞次数高</option>
+            <option value="11" selected="selected">重定向至UMTS次数大于1000次</option>
+            <option value="12" selected="selected">重定向至GSM次数大于1000次</option>
+            <option value="13" selected="selected">0话务小区</option>
+            <option value="14" selected="selected">小区可用率为0</option>
+        </select>
+
+        <label>小区列表：</label>
+        <input type="text" class="form-control" placeholder="小区列表请用逗号隔开" name="celllist"  style="behavior:url(#default#savehistory)">
+
+
+        <div class="form-group">
+            <label>选择时间：</label>
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" id='datetime' name="datetime"/>
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+        </div>
+
+        <input class="btn btn-default" type="button" value="查询" id="kpifilter">
+    </form>
+
+    <table id="kpitables" class="cell-border gridtable">
+        <thead>
+        <tr>
+            <th>时间</th>
+            <th>对象编号(点击查询MDT)</th>
+            <th>小区名(点击查询公参)</th>
+            <th>质差种类个数</th>
+            <th>无线接通率差小区</th>
+            <th>掉线率差小区</th>
+            <th>同频切换出差小区</th>
+            <th>CQI差小区</th>
+            <th>干扰噪声差小区</th>
+            <th>感知速率差小区</th>
+            <th>X2切换差小区</th>
+            <th>异频切换出差小区</th>
+            <th>RRC连接建立拥塞差小区</th>
+            <th>ERAB建立拥塞差小区</th>
+            <th>LTE_UTRAN重定向高小区</th>
+            <th>LTE_GSM重定向高小区</th>
+            <th>零话务小区</th>
+            <th>小区可用率差小区</th>
+            <th>平均每PRB干扰噪声功率(dBm)</th>
+            <th>RRC连接建立拥塞次数</th>
+            <th>E-RAB建立拥塞次数</th>
+            <th>RRC连接平均数</th>
+            <th>RRC连接许可用户数</th>
+            <th>RRC连接最大数</th>
+            <th>RRC建立成功次数</th>
+            <th>RRC连接建立请求次数</th>
+            <th>RRC连接建立成功率%</th>
+            <th>RRC连接重建成功次数</th>
+            <th>RRC连接重建请求次数</th>
+            <th>RRC重建成功率%</th>
+            <th>E-RAB建立成功次数</th>
+            <th>E-RAB建立请求次数</th>
+            <th>ERAB建立成功率%</th>
+            <th>无线接通率%</th>
+            <th>E-RAB异常释放次数</th>
+            <th>LTE业务释放次数</th>
+            <th>LTE 业务掉线率%</th>
+            <th>同频切换出成功次数</th>
+            <th>同频切换出请求次数</th>
+            <th>同频切换成功率%</th>
+            <th>异频切换出成功次数</th>
+            <th>异频切换出请求次数</th>
+            <th>异频切换成功率%</th>
+            <th>eNB间X2切换出请求次数</th>
+            <th>eNB间S1切换出请求次数</th>
+            <th>eNB间X2切换占比%</th>
+            <th>CQI小于等于6采样点数量</th>
+            <th>CQI总采样点数量</th>
+            <th>CQI小于等于6占比%</th>
+            <th>平均CQI</th>
+            <th>下行PRB占用平均数</th>
+            <th>下行可用PRB数</th>
+            <th>下行PRB利用率%</th>
+            <th>下行TTI调度次数</th>
+            <th>上行单用户平均感知速率(Mbps)</th>
+            <th>下行单用户平均感知速率(Mbps)</th>
+            <th>忙时空口上下行流量(MB)</th>
+            <th>单流模式下行传输TB数</th>
+            <th>双流模式下行传输TB数</th>
+            <th>双流占比%</th>
+            <th>LTE-UTRAN系统间盲重定向请求次数</th>
+            <th>LTE-UTRAN系统间非盲重定向请求次数</th>
+            <th>LTE-GSM系统间盲重定向请求次数</th>
+            <th>LTE-GSM系统间非盲重定向请求次数</th>
+            <th>RLC层AM模式下行PDU重传次数</th>
+            <th>RLC层AM模式下行PDU发送次数</th>
+            <th>RLC层AM模式下行重传率%</th>
+            <th>LTE小区退服时长(s)</th>
+            <th>小区统计时长(s)</th>
+            <th>小区可用率%</th>
+        </tr>
+        </thead>
+    </table>
+    <script>
+        $('#poortype').multiselect(
+            {
+                includeSelectAllOption: true,
+                selectAllText: "全选",
+                nonSelectedText: '差小区类型',
+                allSelectedText: '全部差小区',
+            }
+        );
+
+        {#function getNow(s) {#}
+        {#return s < 10 ? '0' + s: s};#}
+        {#var myDate = new Date();#}
+        {#var year=myDate.getFullYear();#}
+        {#var month=myDate.getMonth()+1;#}
+        {#var date=myDate.getDate()-1;#}
+        {#var now=year+'-'+getNow(month)+"-"+getNow(date)#}
+        var yesterdsay = new Date(new Date().getTime() - 86400000);
+           $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            defaultDate: yesterdsay
+        });
+
+    </script>	
+	</body>
+</html>

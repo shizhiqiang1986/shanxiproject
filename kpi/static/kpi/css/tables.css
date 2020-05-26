@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.divBG {
+    background: gray;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 20;
+    filter: alpha(opacity=60);
+    opacity: 0.5 !important;
+    align-content: center;
+}
+.divBG img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/*设置表头格式*/
+table.gridtable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #337ab7;
+    border-width: 1px;
+    border-collapse: collapse;
+}
+
+/*设置表头内容*/
+table.gridtable th {
+    border-width: 1px;
+    padding-left: 10px !important;
+    border-style: solid;
+    border-color: #eee;
+    background-color: #5bc0de;
+    font-size: 7px;
+    color: #eee;
+}
+
+/*设置表内容*/
+table.gridtable td {
+    border-width: 1px;
+    padding-left: 5px !important;
+    border-style: solid;
+    border-color: #eee;
+}
+
+/*表总容器*/
+#kpitables_wrapper {
+    width: 100%;
+}
+/*表头错位*/
+#siteinfotables {
+    width: 100%!important;
+}
+
+/*搜索框*/
+#kpitables_filter {
+    margin-top: 2px;
+    display: inline-block;
+    right: 10px;
+    font-size: 13px;
+}
+
+/*导出按钮容器*/
+.dt-buttons {
+    display: inline-block;
+    margin-top: 2px;
+}
+
+/*页面信息容器*/
+#tools {
+    font-size: 15px
+}
+
+/*翻页器*/
+#kpitables_paginate,#siteinfotables_paginate {
+    display: inline;
+}
+
+
+/*显示分页信息*/
+#kpitables_info,#siteinfotables_info {
+    display: inline;
+    padding: 0px;
+    margin-right: 10px;
+    float: left;
+    margin-top: 5px
+}
+
+
+
+/*分页器*/
+#kpitables_length,#siteinfotables_length  {
+    display: inline;
+    float: left;
+    margin-top: 5px
+}
+
+
+
+
+/*分页跳转*/
+#kpitables_paginate *,#siteinfotables_paginate *{
+padding: 0;
+}
+
+
+
+/*导出按钮样式*/
+.btn-sm {
+    width: 50px;
+    height: 25px;
+    border: none;
+
+}
+
+#kpiquery,#siteinfoquery{
+    padding: 5px !important;
+    /*background-color: #5bc0de;*/
+    border-bottom: #f1f1f1 solid 2px;
+}
+
+
+
+
+#kpiquery select,#siteinfoquery select {
+    height: 25px;
+    padding: 0;
+    font-size: 10px;
+    text-align: center;
+}
+#kpiquery span {
+    font-size: 10px;
+}
+#kpiquery label,#siteinfoquery label  {
+    font-size: 10px;
+    text-align: center;
+    margin-left: 10px;
+    padding: 3px;
+}
+.btn-group button{
+    padding: 2px!important;
+}
+
+#kpiquery input,#siteinfoquery input {
+    padding: 6px 8px;
+    margin: 0;
+    font-size: 10px;
+    height: auto;
+    vertical-align:middle;
+}
+.dataTables_scrollBody{
+    max-height: 400px!important;
+}
+
+td.dataTables_empty{
+    text-align:left!important;
+}
+
+table.dataTable tbody th, table.dataTable tbody td{
+    padding: 1px;
+}

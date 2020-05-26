@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录</title>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/css/styles.css'%}">
+<script src="{% static 'kpi/js/jquery-3.3.1.min.js'%}"></script>
+</head>
+<body style="background-color: #f7ecb5">
+<div class="htmleaf-container">
+	<div class="wrapper">
+		<div class="container">
+			<h2 style="color: #761c19">欢迎使用陕西联通中兴业务区数据共享系统</h2>
+            <p style="color: red;font-weight: bold;">{{msg}}</p>
+			<form class="form" method="post" action="">
+                {% csrf_token %}
+                <input name="username" type="text" placeholder="UserName">
+				<input name="userpassword" type="password" placeholder="Password">
+				<button type="submit" id="login-button">Login</button>
+
+			</form>
+		</div>
+		<ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+
+
+	</div>
+</div>
+
+
+</body>
+</html>

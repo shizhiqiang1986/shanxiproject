@@ -1,0 +1,116 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<title>
+			陕西MDT分析系统
+		</title>
+		<link rel="shortcut icon" href="{% static 'kpi/img/logo.ico'%}" />
+		<link rel="stylesheet" href="{% static 'kpi/css/ol.css'%}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'kpi/css/config.css'%}" type="text/css" />
+		<script type="text/javascript" src="{% static 'kpi/js/jquery-3.3.1.min.js'%}">
+		</script>
+		<script src="{% static 'kpi/js/ol.js'%}">
+		</script>
+	</head>
+	<body>
+		<div class="tools">
+			<ul>
+				<li>
+					<img src="{% static 'kpi/img/4gsite.png'%}" id="lte" title="显示4G基站" onclick="ltelayer()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/3gsite.png'%}" id="wcdma" title="显示3G基站" onclick="wcdmalayer()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/layer.png'%}" id="layer" title="图层选择" onclick="selectlayer()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/message.png'%}" id="info" title="查看基站信息" onclick="nodelist()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/ruler.png'%}" id="lenght" title="测量距离" onclick="drawcontrol('lenght');"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/area.png'%}" id="area" title="测量面积" onclick="drawcontrol('area');"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/eraser.png'%}" id="ereser" title="清除测量" onclick="drop()"
+					/>
+				</li>
+				<li>
+					<input type="text" placeholder="enbid或cellid如:77777750" size="40" id="filter" />
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/filter.png'%}" id="search" title="查询" onclick="filtelayer()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/clean.png'%}" id="reset" title="取消查询" onclick="resetFilter()"
+					/>
+				</li>
+				<li>
+					<img src="{% static 'kpi/img/legend.png'%}" id="showlegend" title="显示图例" onclick="showPic()"
+					/>
+				</li>
+{#				<li style="width: calc(100% - 650px);">#}
+{#					<marquee align="absmiddle" vspace="10" scrollamount="5"#}
+{#					scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">#}
+{#						通知：MDT全新版本上线，新增功能如下：1、优化交互界面；2、新增前一天忙时KPI指标信息；3、新增定位功能；4、新增卫星影像图层。使用期间如遇BUG请提交至#}
+{#						<B>#}
+{#							zhiqiangs_1986@163.com#}
+{#						</B>#}
+{#					</marquee>#}
+{#				</li>#}
+			</ul>
+		</div>
+		
+		<div id="menu" class="menu">
+				<a href="javascript:changestyle('RSRP')">
+					RSRP
+				</a>
+				<a href="javascript:changestyle('SINR')">
+					SINR
+				</a>
+		</div>
+		
+		<div id="map" class="map">
+			<div class="Map_noprint">
+				<img id="legend" src="{% static 'kpi/img/len.png'%}" />
+				<div class=" BMap_noprint">
+					<div style="float: left;">
+						<div id="bluebg" onclick="change1(this)" class="bluebg" title="显示普通地图">
+							地图
+						</div>
+					</div>
+					<div style="float: left;">
+						<div id="whitebg" onclick="change2(this)" class="whitebg" title="卫星影像"
+						style="">
+							卫星图
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="dialog" class="dialog">
+				<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">
+					×
+				</a>
+				<form id="my_dialog">
+				</form>
+			</div>
+			<div id="mouse">
+				<img  src="{% static 'kpi/img/mouse.png'%}"/>
+			</div>
+		</div>
+		<script src="{% static 'kpi/js/config.js'%}">
+		</script>
+	</body>
+
+</html>

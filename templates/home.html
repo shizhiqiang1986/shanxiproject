@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>陕西联通中兴业务区数据共享平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link REL="SHORTCUT ICON" HREF="{% static "img/favicon.ico" %}"/>
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+</head>
+
+<body>
+<div id="head">
+    <div id="logo"></div>
+    <p style="text-align: right;margin: 20px;font-size: 15px">欢迎您：{{ user }}<a style="border-left: #eee solid;margin-left: 10px ;padding-left: 10px;text-decoration: none;color: white;" href="/login/logout/">退出</a> </p>
+    <div id="title"><span>陕西联通中兴业务区数据共享平台</span></div>
+</div>
+<div id="main">
+    <div id="mainPane">
+        <div id="tabControl" class="tabControl">
+            <div class="tabTitlePart">
+                <div>
+                    <div class="tabTitleContainer" id="TabTitleContainer">
+                        <div id="KPI_Tittle" class="activeTabTitle"><span title="KPI指标提取" >KPI指标提取</span>
+                            <div title="关闭本页" class="tab-close" ></div>
+                        </div>
+                        <div id="MDT_Tittle" class="tabTitle"><span title="MDT分析" >MDT分析</span>
+                            <div title="关闭本页" class="tab-close" ></div>
+                        </div>
+                        <div id="INFO_Tittle" class="tabTitle"><span title="公参核对" >公参核对</span>
+                            <div title="关闭本页" class="tab-close"></div>
+                        </div>
+                        <div id="UPDATE_Tittle" class="tabTitle"><span title="公参维护" >公参维护</span>
+                            <div title="关闭本页" class="tab-close" ></div>
+                        </div>
+                    </div>
+                    <div class="navgit" onmouseover='overShow()' onmouseout='outHide()'>
+                        <img src="{% static 'img/nav.png'%}"  >
+                        <ul id="navgit">
+                            <li><a onclick="createiframe('KPI_Page','KPI_iframe','/kpi/kpitables');creatediv('KPI指标提取','KPI_Tittle')">KPI指标提取</a></li>
+                            <li><a onclick="createiframe('MDT_Page','MDT_iframe','/kpi/mdt');creatediv('MDT分析','MDT_Tittle')">MDT分析</a></li>
+                            <li><a onclick="createiframe('INFO_Page','INFO_iframe','/kpi/siteinfo');creatediv('公参核对','INFO_Tittle')">工参核对</a></li>
+                            <li><a onclick="createiframe('UPDATE_Page','UPDATE_iframe','/admin');creatediv('公参维护','UPDATE_Tittle')">工参维护</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;" id="iframpool">
+                <div id="KPI_Page" class="tabPage" style="display: block;">
+                    <iframe id="KPI_iframe" src="/kpi/kpitables" frameborder="0"></iframe>
+                </div>
+                <div id="MDT_Page" class="tabPage" style="display: none;">
+                    <iframe id="MDT_iframe" src="/kpi/mdt" frameborder="0"></iframe>
+                </div>
+                <div id="INFO_Page" class="tabPage" style="display: none;">
+                    <iframe id="INFO_iframe" src="/kpi/siteinfo" frameborder="0"></iframe>
+                </div>
+                <div id="UPDATE_Page" class="tabPage" style="display: none;">
+                    <iframe id="UPDATE_iframe" src="/admin" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

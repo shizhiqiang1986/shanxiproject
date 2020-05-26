@@ -1,0 +1,229 @@
+html,body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0
+}
+p {
+	margin:8px auto
+}
+.tools ul {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+	list-style:none
+}
+.tools ul li input {
+	width:200px;
+	height:20px;
+	margin:5px;
+	border:0px
+}
+.tools {
+	margin:0px;
+	height:40px;
+	background-color:#EEEEEE
+}
+.tools ul li {
+	margin:5px 5px;
+	float:left;
+	text-align:center;
+}
+.tools ul li img {
+	border-radius:10%;
+}
+.map {
+	position:absolute;
+	top:40px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	border:4px solid #415989
+}
+
+#legend{
+	display:none;
+	right:0px;
+	z-index:2000;
+	float: right;
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	border-color: indigo;
+}
+.custom-mouse-position {
+	position:absolute;
+	color:black;
+	font-size:15px;
+	font-weight:bold;
+	font-family:"微软雅黑";
+	bottom:0px
+}
+.menu {
+	display:none;
+	position:absolute;
+	z-index:2005;
+	left:95px;
+	background-color:red;
+	top:42px
+}
+.menu a {
+	display:block;
+	background-color:royalblue;
+	margin:0px;
+	text-decoration:none;
+	border:2px solid #2E466E;
+	border-bottom:1px solid #2E466E;
+	color:#EEEEEE
+}
+.menu a:hover {
+	background:#0000FF
+}
+.dialog {
+	display:none;
+	position:absolute;
+	z-index:2001;
+	top:15%;
+	left:35%;
+	width:30%;
+	height:60%;
+	border:1px solid #2E466E;
+	border-radius:8px;
+	background-color:#7B98BC;
+	overflow-y:auto;
+	overflow-x:auto
+}
+.dialog  p {
+	font:15px "微软雅黑";
+	text-align:left;
+	font-weight:bold
+}
+.dialog  p em {
+	font-weight:100
+}
+.close_btn {
+	display:block;
+	position:fixed;
+	z-index:2008;
+	font-family:arial;
+	font-size:30px;
+	font-weight:700;
+	color:#000000;
+	text-decoration:none;
+	right:36%;
+	padding-right:4px
+}
+
+.triangle {
+	margin:3px;
+	width:0;
+	height:0;
+	border:8px solid transparent;
+	border-left-color:brown;
+	border-right-color:transparent;
+	border-top-color:transparent;
+	border-bottom-color:transparent;
+	float:left
+}
+.nodeinfo_extend {
+	display:none;
+	margin:0 0 0 40px;
+	font:5px/5px arial
+}
+.Map_noprint{
+		bottom: auto; 
+		right: 0px; 
+		top: 0px; 
+		position: absolute; 
+		z-index: 2200;
+	}
+
+	.BMap_noprint{
+		bottom: auto; 
+		right: 13px; 
+		top: 0px; 
+		left: auto; 
+		white-space: nowrap; 
+		cursor: pointer; 
+		//position: absolute; 
+		z-index: 10;
+		text-size-adjust: none;
+		float: right;
+	}
+	.bluebg {
+		box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 3px; 
+		border-left: 1px solid rgb(139, 164, 220); 
+		border-top: 1px solid rgb(139, 164, 220); 
+		border-bottom: 1px solid rgb(139, 164, 220); 
+		background: rgb(142, 168, 224); 
+		padding: 2px 6px; 
+		font: bold 12px / 1.3em arial, sans-serif; 
+		text-align: center; white-space: nowrap; 
+		border-radius: 3px 0px 0px 3px; 
+		color: rgb(255, 255, 255);
+	}
+	.whitebg {
+		box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 3px; 
+		border-width: 1px; 
+		border-style: solid; 
+		border-color: rgb(139, 164, 220); 
+		background: rgb(255, 255, 255); 
+		padding: 2px 6px; 
+		font-style: normal; 
+		font-variant: normal; 
+		font-stretch: normal; 
+		font-size: 12px; 
+		line-height: 1.3em;
+		font-family: arial, sans-serif; 
+		text-align: center; 
+		white-space: nowrap; 
+		border-radius: 0px 3px 3px 0px; 
+		color: rgb(0, 0, 0);
+	}
+.tooltip {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+.tooltip-measure {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.tooltip-static {
+    background-color: #ffcc33;
+    color: black;
+    border: 1px solid white;
+}
+
+.tooltip-measure:before,.tooltip-static:before {
+    border-top: 6px solid rgba(0, 0, 0, 0.5);
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    margin-left: -7px;
+    left: 50%;
+}
+
+.tooltip-static:before {
+    border-top-color: #ffcc33;
+}
+
+.concave {
+	box-shadow: 0px -2px 0px rgba( 255, 255, 250, 1) inset,0px 2px 0px rgba( 0, 0, 0, 0.2) inset
+}
+.bulge{
+	box-shadow: 0px 2px 0px rgba( 255, 255, 250, 1) inset,0px -2px 0px rgba( 0, 0, 0, 0.2) inset
+}
+#mouse{
+	display: none;
+	position: absolute;
+	z-index: 3000;
+}

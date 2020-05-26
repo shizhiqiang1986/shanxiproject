@@ -1,0 +1,99 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/dataTables.jqueryui.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/jquery-ui.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'kpi/css/tables.css' %}">
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/jquery.dataTables.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.jqueryui.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/jszip.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.buttons.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/buttons.html5.min.js' %}"></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/dataTables.fixedColumns.min.js' %} "></script>
+        <script type="text/javascript" charset="utf8" src="{% static 'kpi/js/siteinfo.js' %}"></script>
+
+
+	</head>
+	<body>
+    <div class="divBG ">
+        <img src="{% static 'kpi/img/loading.gif'%}" alt="">
+    </div>
+    <form id="siteinfoquery" class="form-inline" method="get" action="/">
+        {% csrf_token %}
+        <label>地市：</label>
+        <select class="form-control" name="city">
+            <option value="xa">西安</option>
+            <option value="wn">渭南</option>
+            <option value="ak">安康</option>
+            <option value="xy">咸阳</option>
+            <option value="bj">宝鸡</option>
+            <option value="ya">延安</option>
+            <option value="yl">榆林</option>
+        </select>
+        <input class="btn btn-default" type="button" value="查询" id="siteinfofilter">
+        <input class="btn btn-default" type="button" value="工参维护" id="siteinfoupdate" style="float: right" onclick="infoupdate();">
+    </form>
+
+    <table id="siteinfotables" class="cell-border gridtable">
+        <thead>
+        <tr>
+            <th>地市</th>
+            <th>区县</th>
+            <th>EnodeBID</th>
+            <th>CI</th>
+            <th>EnodeBCID</th>
+            <th>基站名称</th>
+            <th>小区名称</th>
+            <th>老网格</th>
+            <th>市场营销网格</th>
+            <th>网支网格</th>
+            <th>子网ID</th>
+            <th>TAC</th>
+            <th>物理小区识别码（PCI）</th>
+            <th>频段指示</th>
+            <th>SectorID</th>
+            <th>ECI</th>
+            <th>网元经度</th>
+            <th>网元纬度</th>
+            <th>小区经度</th>
+            <th>小区纬度</th>
+            <th>覆盖类型</th>
+            <th>实际站型</th>
+            <th>天线挂高</th>
+            <th>方位角</th>
+            <th>机械下倾角</th>
+            <th>电子下倾角</th>
+            <th>共站信息</th>
+            <th>下行带宽</th>
+            <th>上行中心频点</th>
+            <th>下行中心频点</th>
+            <th>塔型</th>
+            <th>共站类型</th>
+            <th>天线型号</th>
+            <th>站址</th>
+            <th>如何上站</th>
+            <th>建设工期</th>
+            <th>共3G_RNCNODEB</th>
+            <th>共3G_RNCCELLID</th>
+            <th>共2G_网元号&基站ID</th>
+            <th>基站状态</th>
+            <th>开通日期</th>
+            <th>组网方式</th>
+            <th>场景</th>
+            <th>设备类型</th>
+            <th>网元IP</th>
+        </tr>
+        </thead>
+    </table>
+	</body>
+</html>
